@@ -12,6 +12,9 @@ const Layout = ({ children }: LayoutProps) => {
 export default Layout;
 
 const LayoutStyled = styled.div`
+  padding: 10px;
+  margin: 0 auto;
+  max-width: ${({ theme }) => theme.fieldSize.sm};
   height: 100%;
   background: ${({ theme }) => theme.colors.white};
 `;

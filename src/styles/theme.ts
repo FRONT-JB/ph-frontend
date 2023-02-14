@@ -1,14 +1,16 @@
 import { Theme } from '@emotion/react';
 
 export type ColorType = keyof typeof colors;
+export type BreakPointType = keyof typeof fieldSize;
 
 export type ThemeType = {
   colors: { [token in ColorType]: string };
+  fieldSize: { [token in BreakPointType]: string };
 };
 
 const base = {
   white: '#fff',
-  black: '#000',
+  black: '#242526',
 };
 
 const zinc = {
@@ -29,8 +31,15 @@ const colors = {
   ...zinc,
 };
 
+const fieldSize = {
+  sm: '475px',
+  md: '768px',
+  lg: '1024px',
+};
+
 const theme: Theme = {
   colors,
+  fieldSize,
 };
 
 export default theme;

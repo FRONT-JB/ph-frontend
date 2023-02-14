@@ -7,7 +7,7 @@ function App() {
   return (
     <ThemeProvider theme={Theme}>
       <Global styles={Reset} />
-      <Layout>Apps</Layout>
+      <Layout>Github Repository</Layout>
     </ThemeProvider>
   );
 }

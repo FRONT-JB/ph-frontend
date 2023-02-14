@@ -133,7 +133,7 @@ const reset = css`
   html,
   body,
   #root {
-    background-color: #e9e9e9;
+    background-color: #242526;
     height: 100%;
   }
 `;
