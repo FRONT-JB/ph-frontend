@@ -2,6 +2,9 @@ import { css } from '@emotion/react';
 
 const reset = css`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
   *,
   ::after,
   ::before {
@@ -91,9 +94,6 @@ const reset = css`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
   }
   article,
   aside,
@@ -133,8 +133,9 @@ const reset = css`
   html,
   body,
   #root {
+    background-color: #e9e9e9;
     height: 100%;
   }
 `;
 
-export { reset };
+export default reset;
