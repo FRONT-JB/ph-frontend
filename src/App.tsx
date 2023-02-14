@@ -1,13 +1,17 @@
 import { Global, ThemeProvider } from '@emotion/react';
 
-import { Layout } from './component';
+import { useRoutes } from 'react-router-dom';
+
+import { routes } from './routes/Routes';
 import { Reset, Theme } from './styles';
 
 function App() {
+  const element = useRoutes(routes);
+
   return (
     <ThemeProvider theme={Theme}>
       <Global styles={Reset} />
-      <Layout>Github Repository</Layout>
+      {element}
     </ThemeProvider>
   );
 }

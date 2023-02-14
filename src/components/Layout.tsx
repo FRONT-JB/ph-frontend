@@ -1,12 +1,16 @@
-import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-interface LayoutProps {
-  children: ReactNode;
-}
+import { Outlet } from 'react-router-dom';
 
-const Layout = ({ children }: LayoutProps) => {
-  return <LayoutStyled>{children}</LayoutStyled>;
+import { Header } from './Header';
+
+const Layout = () => {
+  return (
+    <LayoutStyled>
+      <Header />
+      <Outlet />
+    </LayoutStyled>
+  );
 };
 
 export default Layout;

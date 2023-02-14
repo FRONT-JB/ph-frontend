@@ -6,6 +6,7 @@ export type BreakPointType = keyof typeof fieldSize;
 export type ThemeType = {
   colors: { [token in ColorType]: string };
   fieldSize: { [token in BreakPointType]: string };
+  shadow: string;
 };
 
 const base = {
@@ -37,9 +38,12 @@ const fieldSize = {
   lg: '1024px',
 };
 
+const shadow = '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)';
+
 const theme: Theme = {
   colors,
   fieldSize,
+  shadow,
 };
 
 export default theme;
