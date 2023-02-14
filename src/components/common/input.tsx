@@ -20,7 +20,6 @@ export default memo(Input);
 
 export const InputWrapper = styled.div`
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -28,6 +27,7 @@ export const InputWrapper = styled.div`
 
 export const LabelStyled = styled.label`
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.zinc_400};
   cursor: pointer;
 `;
 
@@ -36,10 +36,18 @@ export const InputStyled = styled.input`
   padding: 10px 14px;
   width: 100%;
   height: 100%;
-  border: ${({ theme }) => `1px solid ${theme.colors.zinc_300}`};
+  border: 1px solid ${({ theme }) => ` ${theme.colors.zinc_300}`};
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.shadow};
   color: ${({ theme }) => theme.colors.zinc_900};
   font-size: 14px;
-  outline: none;
+  outline: 4px solid transparent;
+  transition: all 0.3s ease-in;
+  &:focus {
+    outline-color: ${({ theme }) => theme.colors.zinc_100};
+  }
+  &::placeholder {
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.zinc_300};
+  }
 `;

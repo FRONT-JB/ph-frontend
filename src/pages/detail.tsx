@@ -1,8 +1,10 @@
+import { Container } from '../styles';
+
 const Detail = () => {
   return (
-    <div>
+    <Container>
       <span>Detail</span>
-    </div>
+    </Container>
   );
 };
 

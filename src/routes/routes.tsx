@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Layout, NotFound } from '../components';
 
-const DynamicMain = React.lazy(() => import('../pages/Main'));
-const DynamicDetail = React.lazy(() => import('../pages/Detail'));
+const DynamicMain = React.lazy(() => import('../pages/main'));
+const DynamicDetail = React.lazy(() => import('../pages/detail'));
 
 export const routes = [
   {

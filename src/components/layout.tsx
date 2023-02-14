@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { Outlet } from 'react-router-dom';
 
-import { Header } from './Header';
+import { Header } from './header';
 
 const Layout = () => {
   return (
@@ -16,6 +16,9 @@ const Layout = () => {
 export default Layout;
 
 const LayoutStyled = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
   padding: 10px;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.fieldSize.sm};

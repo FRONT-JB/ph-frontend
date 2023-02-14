@@ -1,3 +1,3 @@
 export * from './common';
-export * from './Header';
-export { default as Layout } from './Layout';
+export * from './header';
+export { default as Layout } from './layout';

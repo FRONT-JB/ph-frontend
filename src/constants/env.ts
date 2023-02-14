@@ -1,0 +1,3 @@
+const GITHUB_AUTH_TOKEN = import.meta.env.VITE_GITHUB_AUTH_TOKEN;
+
+export { GITHUB_AUTH_TOKEN };
