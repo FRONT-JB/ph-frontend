@@ -15,7 +15,7 @@ export const routes = [
         element: <DynamicMain />,
         index: true,
       },
-      { path: 'detail/:id', element: <DynamicDetail />, index: true },
+      { path: 'detail', element: <DynamicDetail />, index: true },
       {
         path: '*',
         element: <NotFound />,

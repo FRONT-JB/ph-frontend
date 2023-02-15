@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useRoutes } from 'react-router-dom';
 
 import { routes } from './routes/routes';
+import { RepositoryProvider } from './provider';
 import { Reset, Theme } from './styles';
 
 function App() {
@@ -25,10 +26,12 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClientRef.current}>
-      <ThemeProvider theme={Theme}>
-        <Global styles={Reset} />
-        {element}
-      </ThemeProvider>
+      <RepositoryProvider>
+        <ThemeProvider theme={Theme}>
+          <Global styles={Reset} />
+          {element}
+        </ThemeProvider>
+      </RepositoryProvider>
     </QueryClientProvider>
   );
 }

@@ -1,11 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { DetailRepository } from '@/components/detail';
 
-import { Container } from '../styles';
+import { ContainerStyled } from '../styles';
 
 const Detail = () => {
-  const { id } = useParams<{ id: string }>();
-
-  return <Container>Detail {id}</Container>;
+  return (
+    <ContainerStyled>
+      <Suspense fallback="...loading">
+        <DetailRepository />
+      </Suspense>
+    </ContainerStyled>
+  );
 };
 
 export default Detail;
