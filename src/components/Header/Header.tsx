@@ -1,9 +1,12 @@
+import RoutePath from '@/constants/route-path';
 import styled from '@emotion/styled';
+
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <HeaderStyled>
-      <Logo>
+      <Logo to={RoutePath.Root}>
         <Image src="/github-logo.svg" />
       </Logo>
     </HeaderStyled>
@@ -12,9 +15,13 @@ const Header = () => {
 
 export default Header;
 
-const HeaderStyled = styled.header``;
+const HeaderStyled = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const Logo = styled.span`
+const Logo = styled(Link)`
   display: block;
   text-align: center;
 `;
