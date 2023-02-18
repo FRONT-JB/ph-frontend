@@ -1,10 +1,9 @@
 import { useIssuesQuery } from '@/api/queries';
-import RoutePath from '@/constants/route-path';
 import { ContentStyled } from '@/styles/utils';
 import { IssueParamsType } from '@/types/issue';
 import styled from '@emotion/styled';
 
-import { Navigate } from 'react-router-dom';
+import { NotFound } from '../common';
 
 interface DetailRepositoryProps extends IssueParamsType {}
 
@@ -19,7 +18,7 @@ const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
   );
 
   if (!repoName) {
-    return <Navigate to={RoutePath.Root} />;
+    return <NotFound />;
   }
 
   if (error) {

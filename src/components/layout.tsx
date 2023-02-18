@@ -30,6 +30,7 @@ const LayoutContainer = styled(ContainerStyled)`
 `;
 
 const LayoutStyled = styled.div`
+  overflow: hidden;
   display: flex;
   gap: 8px;
   padding: 10px;

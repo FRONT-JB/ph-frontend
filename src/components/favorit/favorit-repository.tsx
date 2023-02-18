@@ -36,7 +36,7 @@ const FavoritRepository = () => {
       search: `?${createSearchParams({
         repoName,
         page: String(FilterConstants.InitialPageNumber),
-        limit: String(FilterConstants.InitialPageNumber),
+        limit: String(FilterConstants.InitialLimitNumber),
         issueSize: String(open_issues),
       })}`,
     });

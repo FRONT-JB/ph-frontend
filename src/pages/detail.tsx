@@ -21,7 +21,11 @@ const Detail = () => {
   const page = parseInt(searchParams.get('page') || '', 10) || 1;
   const limit = parseInt(searchParams.get('limit') || '', 10) || 10;
   const paginationSize = useMemo(() => Math.ceil(issueSize / limit), [issueSize, limit]);
-  const isEmptyFavorit = !favorit.length;
+
+  const isEmptyFavorit = useMemo(() => {
+    const found = favorit.find((repo) => repo.full_name === repoName);
+    return !found || !favorit.length;
+  }, [favorit]);
 
   const handleChangePage = (pageNumber: number) => {
     setSearchParams({ ...paramsObject, page: String(pageNumber) });
@@ -64,14 +68,16 @@ const Detail = () => {
       <DetailPaginationStyled>
         {Array(paginationSize)
           .fill(0)
-          .map((_, index) => (
-            <DetailPaginationButton
-              key={index}
-              buttonText={index + 1}
-              isActive={index + 1 === page}
-              onClick={() => handleChangePage(index + 1)}
-            />
-          ))}
+          .map((_, index) => {
+            return (
+              <DetailPaginationButton
+                key={index}
+                buttonText={index + 1}
+                isActive={index + 1 === page}
+                onClick={() => handleChangePage(index + 1)}
+              />
+            );
+          })}
       </DetailPaginationStyled>
     </ContainerStyled>
   );
@@ -87,12 +93,12 @@ const DetailFilterStyled = styled.div`
 const DetailPaginationStyled = styled.div`
   overflow-x: scroll;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 4px;
-  margin: 0 auto;
-  max-width: 600px;
-  flex: 0 0 auto;
   padding: 5px 0;
+  margin: 0 auto;
+  max-width: 100%;
 `;
 
 const DetailPaginationButton = styled(Button)`

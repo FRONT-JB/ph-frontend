@@ -6,6 +6,7 @@ const ContainerStyled = styled.div`
   gap: 8px;
   max-height: calc(100% - 129px);
   height: 100%;
+  overflow: hidden;
 `;
 
 const ContentStyled = styled.div`
