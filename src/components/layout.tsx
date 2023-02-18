@@ -13,7 +13,7 @@ const Layout = () => {
     <LayoutStyled>
       <LayoutContainer>
         <Header />
-        <Suspense fallback="...page loading">
+        <Suspense>
           <Outlet />
         </Suspense>
       </LayoutContainer>

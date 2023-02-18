@@ -3,13 +3,19 @@ import {
   useRepositoryDispatchContext,
   useRepositoryValueContext,
 } from '@/provider/repository-provider';
-import { ContainerStyled, EmptyStyled } from '@/styles/utils';
-import styled from '@emotion/styled';
 
 import { useNavigate } from 'react-router-dom';
 
 import { Card } from '../card';
 import { Button } from '../common';
+
+import {
+  FavoritCardItem,
+  FavoritCardItemBody,
+  FavoritCardItemHeader,
+  FavoritContainer,
+  FavoritEmpty,
+} from './favorit-repository.style';
 
 const FavoritRepository = () => {
   const navigate = useNavigate();
@@ -30,7 +36,7 @@ const FavoritRepository = () => {
             onClick={() => {
               navigate({
                 pathname: `/detail`,
-                search: `?repoName=${item.full_name}&maxSize=${item.open_issues}`,
+                search: `?repoName=${item.full_name}&page=1&limit=10&maxSize=${item.open_issues}`,
               });
             }}
           >
@@ -57,41 +63,3 @@ const FavoritRepository = () => {
 };
 
 export default FavoritRepository;
-
-const FavoritContainer = styled(ContainerStyled)`
-  overflow-y: auto;
-  flex: 1;
-  padding: 10px;
-  height: 100%;
-  max-height: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.zinc_300};
-  border-radius: 8px;
-  box-shadow: ${({ theme }) => theme.shadow};
-`;
-
-const FavoritEmpty = styled(EmptyStyled)`
-  flex: 1;
-  padding: 10px;
-`;
-
-const FavoritCardItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 10px 0;
-  cursor: pointer;
-  &:not(:first-of-type) {
-    border-top: 1px solid ${({ theme }) => theme.colors.zinc_200};
-  }
-`;
-
-const FavoritCardItemHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const FavoritCardItemBody = styled.p`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.zinc_600};
-  line-height: 23px;
-`;

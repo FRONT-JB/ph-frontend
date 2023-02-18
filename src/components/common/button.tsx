@@ -16,6 +16,7 @@ const Button = ({ type = 'button', buttonText, ...rest }: ButtonProps) => {
 export default Button;
 
 const ButtonStyled = styled.button`
+  display: inline-block;
   padding: 10px 14px;
   width: auto;
   height: 100%;

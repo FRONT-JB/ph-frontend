@@ -1,20 +1,26 @@
 import { useIssuesQuery } from '@/api/queries';
 import RoutePath from '@/constants/route-path';
 import { ContentStyled } from '@/styles/utils';
+import { IssueParamsType } from '@/types/issue';
 import styled from '@emotion/styled';
 
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const DetailRepository = () => {
-  const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  const repoName = searchParams.get('repoName') || '';
-  const maxSize = parseInt(searchParams.get('maxSize') || '', 10) || 0;
+interface DetailRepositoryProps {
+  repoName: IssueParamsType['repoName'];
+  page: IssueParamsType['page'];
+  limit: IssueParamsType['limit'];
+}
 
-  const { data, error } = useIssuesQuery(repoName, {
-    enabled: Boolean(repoName),
-    notifyOnChangeProps: 'tracked',
-  });
+const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
+  const { data: issues, error } = useIssuesQuery(
+    { repoName, page, limit },
+    {
+      enabled: Boolean(repoName),
+      suspense: true,
+      notifyOnChangeProps: 'tracked',
+    }
+  );
 
   if (!repoName) {
     return <Navigate to={RoutePath.Root} />;
@@ -24,7 +30,13 @@ const DetailRepository = () => {
     return <p>에러가 발생했어요.</p>;
   }
 
-  return <DetailRepositoryContent>Detail</DetailRepositoryContent>;
+  return (
+    <DetailRepositoryContent>
+      {issues?.map(({ id }) => (
+        <p key={id}>{id}</p>
+      ))}
+    </DetailRepositoryContent>
+  );
 };
 
 export default DetailRepository;
