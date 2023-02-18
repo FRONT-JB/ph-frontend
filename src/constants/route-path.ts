@@ -1,6 +1,6 @@
-const RoutePath = {
+const RoutePathConstants = {
   Root: '/',
-  Detail: '/repos/:id',
+  Detail: '/detail',
 } as const;
 
-export default RoutePath;
+export default RoutePathConstants;

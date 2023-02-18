@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import StorageKey from '@/constants/storage';
+import StorageKeyConstants from '@/constants/storage';
 
 import { useDebounce } from '../hooks';
 import { RepositoryType } from '../types';
@@ -40,7 +40,7 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
 
   const handleChangeFavoritRepository = useCallback((repository: RepositoryType) => {
     const localStorageFavorit: RepositoryType[] =
-      JSON.parse(localStorage.getItem(StorageKey.Repository) as string) || [];
+      JSON.parse(localStorage.getItem(StorageKeyConstants.Repository) as string) || [];
 
     const hasFavorit = localStorageFavorit.find((list) => list.id === repository.id);
 
@@ -48,8 +48,8 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
       ? localStorageFavorit.filter((list) => list.id !== repository.id)
       : [...localStorageFavorit, repository];
 
-    localStorage.setItem(StorageKey.Repository, JSON.stringify(newStorageValue));
-    window.dispatchEvent(new Event(StorageKey.Event));
+    localStorage.setItem(StorageKeyConstants.Repository, JSON.stringify(newStorageValue));
+    window.dispatchEvent(new Event(StorageKeyConstants.Event));
   }, []);
 
   const repositoryValues = useMemo(
@@ -65,15 +65,15 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const checkLocalStorageFavorit = () => {
       const localStorageFavorit: RepositoryType[] =
-        JSON.parse(localStorage.getItem(StorageKey.Repository) as string) || [];
+        JSON.parse(localStorage.getItem(StorageKeyConstants.Repository) as string) || [];
       setFavorit(localStorageFavorit);
     };
 
     checkLocalStorageFavorit();
 
-    window.addEventListener(StorageKey.Event, checkLocalStorageFavorit);
+    window.addEventListener(StorageKeyConstants.Event, checkLocalStorageFavorit);
     return () => {
-      window.removeEventListener(StorageKey.Event, checkLocalStorageFavorit);
+      window.removeEventListener(StorageKeyConstants.Event, checkLocalStorageFavorit);
     };
   }, []);
 

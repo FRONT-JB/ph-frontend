@@ -1,4 +1,4 @@
-import RoutePath from '@/constants/route-path';
+import RoutePathConstants from '@/constants/route-path';
 import styled from '@emotion/styled';
 
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <HeaderStyled>
-      <Logo to={RoutePath.Root}>
+      <Logo to={RoutePathConstants.Root}>
         <Image src="/github-logo.svg" />
       </Logo>
     </HeaderStyled>

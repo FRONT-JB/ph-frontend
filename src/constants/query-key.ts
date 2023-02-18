@@ -1,6 +1,6 @@
-const QueryKeys = {
+const QueryKeysConstants = {
   Repository: 'getRepository',
   Issues: 'getIssues',
 } as const;
 
-export default QueryKeys;
+export default QueryKeysConstants;

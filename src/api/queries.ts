@@ -1,4 +1,4 @@
-import QueryKeys from '@/constants/query-key';
+import QueryKeysConstants from '@/constants/query-key';
 import { IssueType } from '@/types/issue';
 
 import { AxiosResponse } from 'axios';
@@ -17,14 +17,14 @@ type UseQueryOptions<T> =
 
 const useRepositoryQuery = (searchTerm: string, options?: UseQueryOptions<RepositoryResponse>) => {
   return useQuery(
-    [QueryKeys.Repository, searchTerm],
+    [QueryKeysConstants.Repository, searchTerm],
     () => HTTP.getRepository(searchTerm),
     options
   );
 };
 
 const useIssuesQuery = (params: IssueParamsType, options?: UseQueryOptions<IssueType[]>) => {
-  return useQuery([QueryKeys.Issues, params], () => HTTP.getIssues(params), options);
+  return useQuery([QueryKeysConstants.Issues, params], () => HTTP.getIssues(params), options);
 };
 
 export { useIssuesQuery, useRepositoryQuery };

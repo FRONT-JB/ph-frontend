@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { CardItem } from '../card';
 
-export const FavoritContainer = styled(ContainerStyled)`
+export const FavoritContainerStyled = styled(ContainerStyled)`
   overflow-y: auto;
   flex: 1;
   padding: 10px;
@@ -14,12 +14,12 @@ export const FavoritContainer = styled(ContainerStyled)`
   box-shadow: ${({ theme }) => theme.shadow};
 `;
 
-export const FavoritEmpty = styled(EmptyStyled)`
+export const FavoritEmptyStyled = styled(EmptyStyled)`
   flex: 1;
   padding: 10px;
 `;
 
-export const FavoritCardItem = styled(CardItem)`
+export const FavoritCardItemStyled = styled(CardItem)`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -30,13 +30,13 @@ export const FavoritCardItem = styled(CardItem)`
   }
 `;
 
-export const FavoritCardItemHeader = styled.div`
+export const FavoritCardItemHeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
 `;
 
-export const FavoritCardItemBody = styled.p`
+export const FavoritCardItemBodyStyled = styled.p`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.zinc_600};
   line-height: 23px;

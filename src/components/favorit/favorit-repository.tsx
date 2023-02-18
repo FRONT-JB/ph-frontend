@@ -1,20 +1,23 @@
 import { useMemo } from 'react';
+import FilterConstants from '@/constants/filter';
+import RoutePathConstants from '@/constants/route-path';
 import {
   useRepositoryDispatchContext,
   useRepositoryValueContext,
 } from '@/provider/repository-provider';
+import { RepositoryType } from '@/types/repository';
 
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { Card } from '../card';
 import { Button } from '../common';
 
 import {
-  FavoritCardItem,
-  FavoritCardItemBody,
-  FavoritCardItemHeader,
-  FavoritContainer,
-  FavoritEmpty,
+  FavoritCardItemBodyStyled,
+  FavoritCardItemHeaderStyled,
+  FavoritCardItemStyled,
+  FavoritContainerStyled,
+  FavoritEmptyStyled,
 } from './favorit-repository.style';
 
 const FavoritRepository = () => {
@@ -24,23 +27,28 @@ const FavoritRepository = () => {
 
   const isEmpty = useMemo(() => !favorit.length, [favorit]);
 
-  if (isEmpty) return <FavoritEmpty>저장된 데이터가 없습니다.</FavoritEmpty>;
+  if (isEmpty) return <FavoritEmptyStyled>저장된 데이터가 없습니다.</FavoritEmptyStyled>;
+
+  const handleRouteDetail = (repository: RepositoryType) => {
+    const { full_name: repoName, open_issues } = repository;
+    navigate({
+      pathname: RoutePathConstants.Detail,
+      search: `?${createSearchParams({
+        repoName,
+        page: String(FilterConstants.InitialPageNumber),
+        limit: String(FilterConstants.InitialPageNumber),
+        issueSize: String(open_issues),
+      })}`,
+    });
+  };
 
   return (
-    <FavoritContainer>
+    <FavoritContainerStyled>
       <Card
         list={favorit}
         render={(item) => (
-          <FavoritCardItem
-            key={item.full_name}
-            onClick={() => {
-              navigate({
-                pathname: `/detail`,
-                search: `?repoName=${item.full_name}&page=1&limit=10&maxSize=${item.open_issues}`,
-              });
-            }}
-          >
-            <FavoritCardItemHeader>
+          <FavoritCardItemStyled key={item.full_name} onClick={() => handleRouteDetail(item)}>
+            <FavoritCardItemHeaderStyled>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <strong style={{ display: 'block' }}>{item.full_name}</strong>
                 <p>Issues : {item.open_issues}</p>
@@ -53,12 +61,12 @@ const FavoritRepository = () => {
                   handleChangeFavoritRepository(item);
                 }}
               />
-            </FavoritCardItemHeader>
-            <FavoritCardItemBody>{item.description}</FavoritCardItemBody>
-          </FavoritCardItem>
+            </FavoritCardItemHeaderStyled>
+            <FavoritCardItemBodyStyled>{item.description}</FavoritCardItemBodyStyled>
+          </FavoritCardItemStyled>
         )}
       />
-    </FavoritContainer>
+    </FavoritContainerStyled>
   );
 };
 

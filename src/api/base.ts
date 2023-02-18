@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_BASE_URL, GITHUB_AUTH_TOKEN } from '../constants';
-import { IssueParamsType, RepositoryResponse } from '../types';
+import { IssueParamsType, IssueType, RepositoryResponse } from '../types';
 
 const baseApi = axios.create({
   baseURL: API_BASE_URL,
@@ -20,7 +20,7 @@ const HTTP = {
   getIssues: async (params: IssueParamsType) => {
     const { repoName, page, limit } = params;
     const url = `/repos/${repoName}/issues?page=${page}&per_page=${limit}`;
-    const { data } = await baseApi.get<any>(url);
+    const { data } = await baseApi.get<IssueType[]>(url);
     return data;
   },
 };

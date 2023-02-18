@@ -1,5 +1,7 @@
 import { Suspense, useMemo } from 'react';
 import { DetailRepository } from '@/components/detail';
+import FilterConstants from '@/constants/filter';
+import RoutePathConstants from '@/constants/route-path';
 import styled from '@emotion/styled';
 
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
@@ -13,25 +15,25 @@ const Detail = () => {
   const searchParams = new URLSearchParams(search);
   const paramsObject = Object.fromEntries(searchParams.entries());
   const repoName = searchParams.get('repoName') || '';
-  const maxSize = parseInt(searchParams.get('maxSize') || '', 10) || 0;
+  const issueSize = parseInt(searchParams.get('issueSize') || '', 10) || 0;
   const page = parseInt(searchParams.get('page') || '', 10) || 1;
   const limit = parseInt(searchParams.get('limit') || '', 10) || 10;
-  const paginationSize = useMemo(() => Math.ceil(maxSize / limit), [maxSize, limit]);
+  const paginationSize = useMemo(() => Math.ceil(issueSize / limit), [issueSize, limit]);
 
   const handleChangePage = (pageNumber: number) => {
     navigate({
-      pathname: `/detail`,
-      search: `?${createSearchParams({ ...paramsObject, page: `${pageNumber}` })}`,
+      pathname: RoutePathConstants.Detail,
+      search: `?${createSearchParams({ ...paramsObject, page: String(pageNumber) })}`,
     });
   };
 
   const handleChangeLimit = (limitNumber: number) => {
     navigate({
-      pathname: `/detail`,
+      pathname: RoutePathConstants.Detail,
       search: `?${createSearchParams({
         ...paramsObject,
+        page: String(FilterConstants.InitialPageNumber),
         limit: String(limitNumber),
-        page: String(1),
       })}`,
     });
   };
@@ -48,11 +50,13 @@ const Detail = () => {
           buttonText="20개씩 보기"
           isActive={Number(paramsObject.limit) === 20}
           onClick={() => handleChangeLimit(20)}
+          disabled={issueSize <= 20}
         />
         <Button
           buttonText="50개씩 보기"
           isActive={Number(paramsObject.limit) === 50}
           onClick={() => handleChangeLimit(50)}
+          disabled={issueSize <= 20}
         />
       </DetailFilterStyled>
       <Suspense fallback={<EmptyStyled>...loading</EmptyStyled>}>
@@ -88,11 +92,13 @@ const DetailPaginationStyled = styled.div`
   gap: 4px;
   margin: 0 auto;
   max-width: 600px;
-  height: 40px;
+  flex: 0 0 auto;
+  padding: 5px 0;
 `;
 
 const DetailPaginationButton = styled(Button)`
   padding: 4px;
   min-width: 30px;
   font-size: 12px;
+  height: 30px;
 `;
