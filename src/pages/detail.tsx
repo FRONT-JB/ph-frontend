@@ -1,6 +1,5 @@
 import { Suspense, useMemo } from 'react';
 import { DetailRepository } from '@/components/detail';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
@@ -29,24 +28,28 @@ const Detail = () => {
   const handleChangeLimit = (limitNumber: number) => {
     navigate({
       pathname: `/detail`,
-      search: `?${createSearchParams({ ...paramsObject, limit: `${limitNumber}` })}`,
+      search: `?${createSearchParams({
+        ...paramsObject,
+        limit: String(limitNumber),
+        page: String(1),
+      })}`,
     });
   };
 
   return (
     <ContainerStyled>
       <DetailFilterStyled>
-        <DetailFilterButton
+        <Button
           buttonText="10개씩 보기"
           isActive={Number(paramsObject.limit) === 10}
           onClick={() => handleChangeLimit(10)}
         />
-        <DetailFilterButton
+        <Button
           buttonText="20개씩 보기"
           isActive={Number(paramsObject.limit) === 20}
           onClick={() => handleChangeLimit(20)}
         />
-        <DetailFilterButton
+        <Button
           buttonText="50개씩 보기"
           isActive={Number(paramsObject.limit) === 50}
           onClick={() => handleChangeLimit(50)}
@@ -78,16 +81,6 @@ const DetailFilterStyled = styled.div`
   gap: 8px;
 `;
 
-const DetailFilterButton = styled(Button)<{ isActive: boolean }>`
-  ${({ theme, isActive }) =>
-    isActive
-      ? css`
-          background-color: ${theme.colors.zinc_800};
-          color: ${theme.colors.white};
-        `
-      : ''}
-`;
-
 const DetailPaginationStyled = styled.div`
   overflow-x: scroll;
   display: flex;
@@ -98,15 +91,8 @@ const DetailPaginationStyled = styled.div`
   height: 40px;
 `;
 
-const DetailPaginationButton = styled(Button)<{ isActive: boolean }>`
+const DetailPaginationButton = styled(Button)`
   padding: 4px;
   min-width: 30px;
   font-size: 12px;
-  ${({ theme, isActive }) =>
-    isActive
-      ? css`
-          background-color: ${theme.colors.zinc_800};
-          color: ${theme.colors.white};
-        `
-      : ''}
 `;

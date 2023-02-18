@@ -1,13 +1,15 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonText: ReactNode;
+  isActive?: boolean;
 }
 
-const Button = ({ type = 'button', buttonText, ...rest }: ButtonProps) => {
+const Button = ({ type = 'button', isActive = false, buttonText, ...rest }: ButtonProps) => {
   return (
-    <ButtonStyled type={type} {...rest}>
+    <ButtonStyled type={type} isActive={isActive} {...rest}>
       {buttonText}
     </ButtonStyled>
   );
@@ -15,7 +17,7 @@ const Button = ({ type = 'button', buttonText, ...rest }: ButtonProps) => {
 
 export default Button;
 
-const ButtonStyled = styled.button`
+const ButtonStyled = styled.button<{ isActive: boolean }>`
   display: inline-block;
   padding: 10px 14px;
   width: auto;
@@ -29,7 +31,23 @@ const ButtonStyled = styled.button`
   outline: 4px solid transparent;
   transition: all 0.3s ease;
   cursor: pointer;
+
   &:active {
-    outline-color: ${({ theme }) => theme.colors.zinc_200};
+    outline-color: ${({ theme }) => theme.colors.zinc_300};
   }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.zinc_300};
+    border-color: ${({ theme }) => theme.colors.zinc_300};
+    outline-color: transparent;
+    color: ${({ theme }) => theme.colors.zinc_100};
+    box-shadow: none;
+  }
+  ${({ theme, isActive }) =>
+    isActive
+      ? css`
+          background-color: ${theme.colors.zinc_800};
+          border-color: ${theme.colors.zinc_800};
+          color: ${theme.colors.white};
+        `
+      : ''}
 `;
