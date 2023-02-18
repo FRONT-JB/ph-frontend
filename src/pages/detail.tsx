@@ -4,18 +4,17 @@ import FilterConstants from '@/constants/filter';
 import RoutePathConstants from '@/constants/route-path';
 import styled from '@emotion/styled';
 
-import { createSearchParams, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 import { Button } from '../components';
 import { useRepositoryValueContext } from '../provider';
 import { ContainerStyled, EmptyStyled } from '../styles';
 
 const Detail = () => {
-  const navigate = useNavigate();
-  const { search } = useLocation();
   const { favorit } = useRepositoryValueContext();
+  const [searchParams, setSearchParams] = useSearchParams();
   // TODO: 핸들러 로직 추가하기
-  const searchParams = new URLSearchParams(search);
+
   const paramsObject = Object.fromEntries(searchParams.entries());
   const repoName = searchParams.get('repoName') || '';
   const issueSize = parseInt(searchParams.get('issueSize') || '', 10) || 0;
@@ -25,20 +24,14 @@ const Detail = () => {
   const isEmptyFavorit = !favorit.length;
 
   const handleChangePage = (pageNumber: number) => {
-    navigate({
-      pathname: RoutePathConstants.Detail,
-      search: `?${createSearchParams({ ...paramsObject, page: String(pageNumber) })}`,
-    });
+    setSearchParams({ ...paramsObject, page: String(pageNumber) });
   };
 
   const handleChangeLimit = (limitNumber: number) => {
-    navigate({
-      pathname: RoutePathConstants.Detail,
-      search: `?${createSearchParams({
-        ...paramsObject,
-        page: String(FilterConstants.InitialPageNumber),
-        limit: String(limitNumber),
-      })}`,
+    setSearchParams({
+      ...paramsObject,
+      page: String(FilterConstants.InitialPageNumber),
+      limit: String(limitNumber),
     });
   };
 
