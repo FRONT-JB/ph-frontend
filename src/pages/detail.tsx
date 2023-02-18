@@ -4,14 +4,17 @@ import FilterConstants from '@/constants/filter';
 import RoutePathConstants from '@/constants/route-path';
 import styled from '@emotion/styled';
 
-import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
+import { createSearchParams, Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
+import { useRepositoryValueContext } from '../provider';
 import { ContainerStyled, EmptyStyled } from '../styles';
 
 const Detail = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
+  const { favorit } = useRepositoryValueContext();
+  // TODO: 핸들러 로직 추가하기
   const searchParams = new URLSearchParams(search);
   const paramsObject = Object.fromEntries(searchParams.entries());
   const repoName = searchParams.get('repoName') || '';
@@ -19,6 +22,7 @@ const Detail = () => {
   const page = parseInt(searchParams.get('page') || '', 10) || 1;
   const limit = parseInt(searchParams.get('limit') || '', 10) || 10;
   const paginationSize = useMemo(() => Math.ceil(issueSize / limit), [issueSize, limit]);
+  const isEmptyFavorit = !favorit.length;
 
   const handleChangePage = (pageNumber: number) => {
     navigate({
@@ -37,6 +41,8 @@ const Detail = () => {
       })}`,
     });
   };
+
+  if (isEmptyFavorit) return <Navigate to={RoutePathConstants.Root} />;
 
   return (
     <ContainerStyled>

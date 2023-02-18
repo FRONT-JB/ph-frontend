@@ -6,11 +6,7 @@ import styled from '@emotion/styled';
 
 import { Navigate } from 'react-router-dom';
 
-interface DetailRepositoryProps {
-  repoName: IssueParamsType['repoName'];
-  page: IssueParamsType['page'];
-  limit: IssueParamsType['limit'];
-}
+interface DetailRepositoryProps extends IssueParamsType {}
 
 const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
   const { data: issues, error } = useIssuesQuery(
