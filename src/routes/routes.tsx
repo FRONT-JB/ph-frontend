@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Layout, NotFound } from '../components';
+import { Layout, NotFound } from '@/components';
 
 const DynamicMain = React.lazy(() => import('../pages/main'));
 const DynamicDetail = React.lazy(() => import('../pages/detail'));

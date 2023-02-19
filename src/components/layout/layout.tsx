@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { ContainerStyled } from '../styles';
+import { ContainerStyled } from '@/styles';
 
-import { FavoritRepository } from './favorit';
-import { Header } from './header';
+import { FavoritRepository } from '../favorit';
+import { Header } from '../header';
 
 const Layout = () => {
   return (
