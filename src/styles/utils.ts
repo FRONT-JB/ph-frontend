@@ -5,13 +5,13 @@ const ContainerStyled = styled.div`
   flex-direction: column;
   gap: 8px;
   max-height: calc(100% - 129px);
+  width: 100%;
   height: 100%;
-  overflow: hidden;
 `;
 
 const ContentStyled = styled.div`
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const EmptyStyled = styled.div`

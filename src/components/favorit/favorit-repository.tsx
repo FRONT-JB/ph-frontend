@@ -31,8 +31,8 @@ const FavoritRepository = () => {
       pathname: RoutePathConstants.Detail,
       search: `?${createSearchParams({
         repoName,
-        page: String(FilterConstants.InitialPageNumber),
-        limit: String(FilterConstants.InitialLimitNumber),
+        page: String(FilterConstants.InitialPage),
+        limit: String(FilterConstants.InitialLimit),
         issueSize: String(open_issues),
       })}`,
     });
