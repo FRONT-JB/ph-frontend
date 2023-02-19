@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 
-import { useRepositoryQuery } from '@/api/queries';
+import { useRepositoryQuery } from '@/api';
 import { useRepositoryDispatchContext, useRepositoryValueContext } from '@/provider';
 import { ContentStyled, EmptyStyled } from '@/styles';
 

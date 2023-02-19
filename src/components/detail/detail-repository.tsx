@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useIssuesQuery } from '@/api/queries';
+import { useIssuesQuery } from '@/api';
 import { ContentStyled } from '@/styles';
 import { IssueParamsType } from '@/types';
 
