@@ -1,11 +1,10 @@
 import { useRef } from 'react';
-import { Global, ThemeProvider } from '@emotion/react';
-
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useRoutes } from 'react-router-dom';
+import { Global, ThemeProvider } from '@emotion/react';
 
-import { routes } from './routes/routes';
 import { RepositoryProvider } from './provider';
+import { routes } from './routes';
 import { Reset, Theme } from './styles';
 
 function App() {

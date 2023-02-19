@@ -1,10 +1,9 @@
-import QueryKeysConstants from '@/constants/query-key';
-import { IssueType } from '@/types/issue';
-
 import { AxiosResponse } from 'axios';
 import { QueryKey, useQuery, UseQueryOptions as DefaultUseQueryOptions } from 'react-query';
 
-import { IssueParamsType, RepositoryResponse } from '../types';
+import { QueryKeysConstants } from '@/constants';
+
+import { IssueParamsType, IssueType, RepositoryResponse } from '../types';
 
 import HTTP from './base';
 

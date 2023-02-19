@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
+import styled from '@emotion/styled';
+
 import { Input, SearchRepository } from '@/components';
 import { useRepositoryDispatchContext } from '@/provider';
 import { ContainerStyled, ContentStyled, EmptyStyled } from '@/styles';
-import styled from '@emotion/styled';
 
 const Main = () => {
   const { handleChangeSearchValue } = useRepositoryDispatchContext();

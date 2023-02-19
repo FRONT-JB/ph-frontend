@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
-import styled from '@emotion/styled';
-
 import { Outlet } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 import { ContainerStyled } from '../styles';
 

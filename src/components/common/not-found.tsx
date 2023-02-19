@@ -1,6 +1,6 @@
-import { RoutePathConstants } from '@/constants';
-
 import { Navigate } from 'react-router-dom';
+
+import { RoutePathConstants } from '@/constants';
 
 const NotFound = () => {
   return <Navigate to={RoutePathConstants.Root} replace />;

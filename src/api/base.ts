@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { API_BASE_URL, GITHUB_AUTH_TOKEN } from '../constants';
-import { IssueParamsType, IssueType, RepositoryResponse } from '../types';
+import { API_BASE_URL, GITHUB_AUTH_TOKEN } from '@/constants';
+import { IssueParamsType, IssueType, RepositoryResponse } from '@/types';
 
 const baseApi = axios.create({
   baseURL: API_BASE_URL,

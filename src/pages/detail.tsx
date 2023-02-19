@@ -1,7 +1,6 @@
 import { Suspense, useMemo } from 'react';
-import styled from '@emotion/styled';
-
 import { Navigate, useSearchParams } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 import { Button } from '../components';
 import { DetailRepository } from '../components/detail';
