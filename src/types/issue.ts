@@ -1,13 +1,13 @@
 import { RepositoryType } from './repository';
 import { UserType } from './user';
 
-export interface IssueParamsType {
+interface IssueParamsType {
   repoName: RepositoryType['full_name'];
   page: number;
   limit: number;
 }
 
-export interface IssueType {
+interface IssueType {
   repository_url: string;
   html_url: string;
   id: number;
@@ -25,3 +25,5 @@ export interface IssueType {
   performed_via_github_app: null;
   state_reason: null;
 }
+
+export type { IssueParamsType, IssueType };

@@ -1,6 +1,6 @@
 import { useIssuesQuery } from '@/api/queries';
-import { ContentStyled } from '@/styles/utils';
-import { IssueParamsType } from '@/types/issue';
+import { ContentStyled } from '@/styles';
+import { IssueParamsType } from '@/types';
 import styled from '@emotion/styled';
 
 import { NotFound } from '../common';

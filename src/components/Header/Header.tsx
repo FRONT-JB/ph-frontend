@@ -1,4 +1,4 @@
-import RoutePathConstants from '@/constants/route-path';
+import { RoutePathConstants } from '@/constants';
 import styled from '@emotion/styled';
 
 import { Link } from 'react-router-dom';

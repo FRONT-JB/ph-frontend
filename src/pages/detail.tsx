@@ -1,25 +1,23 @@
 import { Suspense, useMemo } from 'react';
-import { DetailRepository } from '@/components/detail';
-import FilterConstants from '@/constants/filter';
-import RoutePathConstants from '@/constants/route-path';
 import styled from '@emotion/styled';
 
 import { Navigate, useSearchParams } from 'react-router-dom';
 
 import { Button } from '../components';
+import { DetailRepository } from '../components/detail';
+import { FilterConstants, RoutePathConstants, SearchParamsConstants } from '../constants';
 import { useRepositoryValueContext } from '../provider';
 import { ContainerStyled, EmptyStyled } from '../styles';
 
 const Detail = () => {
   const { favorit } = useRepositoryValueContext();
   const [searchParams, setSearchParams] = useSearchParams();
-  // TODO: 핸들러 로직 추가하기
 
   const paramsObject = Object.fromEntries(searchParams.entries());
-  const repoName = searchParams.get('repoName') || '';
-  const issueSize = parseInt(searchParams.get('issueSize') || '', 10) || 0;
-  const page = parseInt(searchParams.get('page') || '', 10) || 1;
-  const limit = parseInt(searchParams.get('limit') || '', 10) || 10;
+  const repoName = searchParams.get(SearchParamsConstants.RepositoryName) || '';
+  const issueSize = parseInt(searchParams.get(SearchParamsConstants.IssueSize) || '', 10) || 0;
+  const page = parseInt(searchParams.get(SearchParamsConstants.Page) || '', 10) || 1;
+  const limit = parseInt(searchParams.get(SearchParamsConstants.Limit) || '', 10) || 10;
   const paginationSize = useMemo(() => Math.ceil(issueSize / limit), [issueSize, limit]);
 
   const isEmptyFavorit = useMemo(() => {

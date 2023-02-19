@@ -1,4 +1,4 @@
-import { RepositoryType } from '@/types/repository';
+import { RepositoryType } from '@/types';
 
 import { CardItem, CardItemImage } from '../card';
 

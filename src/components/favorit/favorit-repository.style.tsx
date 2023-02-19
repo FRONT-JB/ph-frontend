@@ -1,4 +1,4 @@
-import { ContainerStyled, EmptyStyled } from '@/styles/utils';
+import { ContainerStyled, EmptyStyled } from '@/styles';
 import styled from '@emotion/styled';
 
 import { CardItem } from '../card';

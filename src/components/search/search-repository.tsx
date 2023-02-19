@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
 import { useRepositoryQuery } from '@/api/queries';
-import {
-  useRepositoryDispatchContext,
-  useRepositoryValueContext,
-} from '@/provider/repository-provider';
-import { ContentStyled, EmptyStyled } from '@/styles/utils';
+import { useRepositoryDispatchContext, useRepositoryValueContext } from '@/provider';
+import { ContentStyled, EmptyStyled } from '@/styles';
 import styled from '@emotion/styled';
 
 import { Card } from '../card';

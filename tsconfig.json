@@ -3,15 +3,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/provider/*": ["src/provider/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/types/*": ["src/types/*"],
-      "@/api/*": ["src/api/*"]
+      "@/*": ["src/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,

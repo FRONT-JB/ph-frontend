@@ -1,11 +1,7 @@
 import { useMemo } from 'react';
-import FilterConstants from '@/constants/filter';
-import RoutePathConstants from '@/constants/route-path';
-import {
-  useRepositoryDispatchContext,
-  useRepositoryValueContext,
-} from '@/provider/repository-provider';
-import { RepositoryType } from '@/types/repository';
+import { FilterConstants, RoutePathConstants } from '@/constants';
+import { useRepositoryDispatchContext, useRepositoryValueContext } from '@/provider';
+import { RepositoryType } from '@/types';
 
 import { createSearchParams, useNavigate } from 'react-router-dom';
 

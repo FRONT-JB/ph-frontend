@@ -8,10 +8,9 @@ import {
   useMemo,
   useState,
 } from 'react';
-import StorageKeyConstants from '@/constants/storage';
-
-import { useDebounce } from '../hooks';
-import { RepositoryType } from '../types';
+import { StorageKeyConstants } from '@/constants';
+import { useDebounce } from '@/hooks';
+import { RepositoryType } from '@/types';
 
 type RepositoryValueContextType = {
   debounceSearchValue: string;
