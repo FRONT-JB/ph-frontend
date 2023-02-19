@@ -2,8 +2,7 @@ import { Suspense, useMemo } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Button } from '../components';
-import { DetailRepository } from '../components/detail';
+import { Button, DetailRepository } from '../components';
 import { FilterConstants, RoutePathConstants, SearchParamsConstants } from '../constants';
 import { useRepositoryValueContext } from '../provider';
 import { ContainerStyled, EmptyStyled } from '../styles';
