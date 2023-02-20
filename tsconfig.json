@@ -3,14 +3,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/types/*": ["src/types/*"],
-      "@/api/*": ["src/api/*"]
+      "@/*": ["src/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -20,7 +13,7 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
