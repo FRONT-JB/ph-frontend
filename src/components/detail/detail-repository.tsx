@@ -19,16 +19,16 @@ const DetailRepository = ({ repoName }: DetailRepositoryProps) => {
     isLoading,
     hasNextPage,
     fetchNextPage,
-    error,
+    isError,
   } = useIssuesInfinityQuery({ repoName });
   const isNotFound = useMemo(() => !repoName, [repoName]);
   const isEmpty = useMemo(() => !issues?.pages[0].length, [issues]);
 
   const statusMessage = useMemo(() => {
+    if (isError) return '에러가 발생했어요.';
     if (isEmpty) return '이슈가 없어요.';
-    if (error) return '에러가 발생했어요.';
-    return '이슈가 없어요.';
-  }, [isEmpty, error]);
+    return '';
+  }, [isEmpty, isError]);
 
   if (isLoading)
     return (
@@ -41,7 +41,7 @@ const DetailRepository = ({ repoName }: DetailRepositoryProps) => {
     return <NotFound />;
   }
 
-  if (isEmpty || error) {
+  if (statusMessage) {
     return <EmptyStyled>{statusMessage}</EmptyStyled>;
   }
 

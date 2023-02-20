@@ -18,9 +18,16 @@ const SearchRepository = () => {
     hasNextPage,
     isLoading,
     isFetching,
+    isError,
   } = useRepositoryInfinityQuery(debounceSearchValue);
 
-  const isEmpty = useMemo(() => !searchResult?.pages.length, [searchResult?.pages]);
+  const isEmpty = useMemo(() => !searchResult?.pages[0].items.length, [searchResult?.pages]);
+
+  const statusMessage = useMemo(() => {
+    if (isError) return '에러가 발생했어요.';
+    if (isEmpty) return '검색 결과가 없습니다.';
+    return '';
+  }, [isEmpty, isError]);
 
   if (isLoading)
     return (
@@ -31,7 +38,7 @@ const SearchRepository = () => {
 
   if (!debounceSearchValue) return <EmptyStyled>상단의 인풋에 키워드를 입력해주세요.</EmptyStyled>;
 
-  if (isEmpty) return <EmptyStyled>검색 결과가 없습니다.</EmptyStyled>;
+  if (statusMessage) return <EmptyStyled>{statusMessage}</EmptyStyled>;
 
   return (
     <SearchRepositoryContent>
