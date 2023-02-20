@@ -1,6 +1,7 @@
 import { ReactNode, useMemo } from 'react';
 
 import {
+  CardComment,
   CardDate,
   CardDescription,
   CardFork,
@@ -9,6 +10,7 @@ import {
   CardLanguage,
   CardStar,
   CardTitle,
+  CardUser,
 } from './card-item';
 
 interface CardProps<T> {
@@ -29,5 +31,7 @@ Card.Star = CardStar;
 Card.Date = CardDate;
 Card.Fork = CardFork;
 Card.Image = CardItemImage;
+Card.Comment = CardComment;
+Card.User = CardUser;
 
 export default Card;

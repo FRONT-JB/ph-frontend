@@ -1,7 +1,8 @@
-import { ImgHTMLAttributes, ReactNode, useMemo } from 'react';
+import React, { ImgHTMLAttributes, ReactNode, useMemo } from 'react';
 
 import { DescriptionStyled, TitleStyled } from '@/styles';
 import { LanguageType } from '@/styles/theme';
+import { UserType } from '@/types';
 import { dateToLocaleString } from '@/utils';
 
 import { Dot, Icons } from '../common';
@@ -20,8 +21,10 @@ const CardItemImage = ({ src, alt, title, ...rest }: ImgHTMLAttributes<HTMLImage
   );
 };
 
-const CardDate = ({ type, date }: { type: 'create' | 'update'; date: Date }) => {
+const CardDate = ({ type, date }: { type?: 'create' | 'update'; date: Date }) => {
   const dateTitle = useMemo(() => {
+    if (!type) return '';
+
     if (type === 'create') {
       return '생성 날짜';
     }
@@ -31,7 +34,7 @@ const CardDate = ({ type, date }: { type: 'create' | 'update'; date: Date }) => 
   return (
     <DescriptionStyled>
       <Icons.Date />
-      {dateTitle} - {dateToLocaleString(date)}
+      {dateTitle ? `${dateTitle} - ${dateToLocaleString(date)}` : `${dateToLocaleString(date)}`}
     </DescriptionStyled>
   );
 };
@@ -66,7 +69,7 @@ const CardLanguage = ({ language }: { language: LanguageType }) => {
   );
 };
 
-const CardDescription = ({ description }: { description: ReactNode }) => {
+const CardDescription = ({ description }: { description: string }) => {
   return (
     <DescriptionStyled>
       <Icons.Description />
@@ -84,7 +87,26 @@ const CardFork = ({ count }: { count: number }) => {
   );
 };
 
+const CardComment = ({ count }: { count: number }) => {
+  return (
+    <DescriptionStyled>
+      <Icons.Comment />
+      {count}
+    </DescriptionStyled>
+  );
+};
+
+const CardUser = ({ name }: { name: UserType['login'] }) => {
+  return (
+    <DescriptionStyled>
+      <Icons.User />
+      {name}
+    </DescriptionStyled>
+  );
+};
+
 export {
+  CardComment,
   CardDate,
   CardDescription,
   CardFork,
@@ -93,4 +115,5 @@ export {
   CardLanguage,
   CardStar,
   CardTitle,
+  CardUser,
 };

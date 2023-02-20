@@ -43,7 +43,7 @@ const TitleStyled = styled.strong`
   color: ${({ theme }) => theme.colors.zinc_800};
   word-break: break-all;
   & > .icons {
-    margin-right: 8px;
+    margin-right: 4px;
   }
 `;
 

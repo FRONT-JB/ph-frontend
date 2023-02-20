@@ -23,8 +23,8 @@ const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchReposit
       <SearchRepositoryCardBodyStyled>
         <SearchRepositoryCardTitleStyled>{full_name}</SearchRepositoryCardTitleStyled>
         <Card.Date type="update" date={updated_at} />
-        <Card.Issue count={open_issues} />
         {language && <Card.Language language={language} />}
+        <Card.Issue count={open_issues} />
         {description && (
           <SearchRepositoryCardDescStyled>
             <Icons.Description />

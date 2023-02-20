@@ -33,10 +33,10 @@ const FavoritRepositoryCard = ({
         <Card.Title title={full_name} />
         <Card.Date type="create" date={created_at} />
         <Card.Date type="update" date={updated_at} />
+        {language && <Card.Language language={language} />}
         <Card.Issue count={open_issues} />
         <Card.Star count={stargazers_count} />
         <Card.Fork count={forks} />
-        {language && <Card.Language language={language} />}
         {description && <Card.Description description={description} />}
       </FavoritCardItemBodyStyled>
       <Button
