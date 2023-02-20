@@ -1,3 +1,5 @@
+import { LanguageType } from '@/styles/theme';
+
 interface OwnerType {
   login: string;
   id: number;
@@ -13,6 +15,8 @@ interface RepositoryType {
   full_name: string;
   watchers: number;
   description: string;
+  language: LanguageType;
+  visibility: string;
 }
 
 interface RepositoryResponse {

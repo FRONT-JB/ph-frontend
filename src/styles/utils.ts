@@ -1,4 +1,13 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
+const fontEllipsis = (lineClamp: number) => css`
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: ${lineClamp};
+  -webkit-box-orient: vertical;
+`;
 
 const ContainerStyled = styled.div`
   display: flex;
@@ -26,4 +35,24 @@ const EmptyStyled = styled.div`
   font-size: 14px;
 `;
 
-export { ContainerStyled, ContentStyled, EmptyStyled };
+const TitleStyled = styled.strong`
+  display: inline-block;
+  font-size: 16px;
+  line-height: 26px;
+  color: ${({ theme }) => theme.colors.zinc_800};
+`;
+
+const DescriptionStyled = styled.p`
+  font-size: 12px;
+  line-height: 19px;
+  color: ${({ theme }) => theme.colors.zinc_800};
+`;
+
+export {
+  ContainerStyled,
+  ContentStyled,
+  DescriptionStyled,
+  EmptyStyled,
+  fontEllipsis,
+  TitleStyled,
+};
