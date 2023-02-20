@@ -7,7 +7,7 @@ import { Button, Icons } from '../common';
 
 interface FavoritRepositoryCardProps {
   item: RepositoryType;
-  onChangeFavoritRepository: (repostiory: RepositoryType) => void;
+  onChangeFavoritRepository: (repostiory: RepositoryType, type: 'add' | 'del') => void;
   onRouteDetail: (repository: RepositoryType) => void;
 }
 
@@ -43,7 +43,7 @@ const FavoritRepositoryCard = ({
         buttonText={<Icons.BookmarkActive />}
         onClick={(e) => {
           e.stopPropagation();
-          onChangeFavoritRepository(item);
+          onChangeFavoritRepository(item, 'del');
         }}
       />
     </CardItemStyled>

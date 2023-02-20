@@ -11,7 +11,7 @@ import {
 
 interface SearchRepositoryCardProps {
   item: RepositoryType;
-  onChangeFavoritRepository: (repostiory: RepositoryType) => void;
+  onChangeFavoritRepository: (repostiory: RepositoryType, type: 'add' | 'del') => void;
 }
 
 const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchRepositoryCardProps) => {
@@ -32,7 +32,10 @@ const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchReposit
           </SearchRepositoryCardDescStyled>
         )}
       </SearchRepositoryCardBodyStyled>
-      <Button buttonText={<Icons.Bookmark />} onClick={() => onChangeFavoritRepository(item)} />
+      <Button
+        buttonText={<Icons.Bookmark />}
+        onClick={() => onChangeFavoritRepository(item, 'add')}
+      />
     </CardItemStyled>
   );
 };
