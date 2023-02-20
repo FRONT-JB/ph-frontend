@@ -1,6 +1,6 @@
 import { RepositoryType } from '@/types';
 
-import { Card, CardItemImageStyled, CardItemStyled } from '../card';
+import { Card, CardItemStyled } from '../card';
 import { Button, Icons } from '../common';
 
 import {
@@ -19,13 +19,7 @@ const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchReposit
 
   return (
     <CardItemStyled>
-      <CardItemImageStyled>
-        <img
-          src={owner.avatar_url}
-          alt={`${owner.login} Thunbnail`}
-          title={`${owner.login} Thunbnail`}
-        />
-      </CardItemImageStyled>
+      <Card.Image src={owner.avatar_url} alt={`${owner.login} Avatar Thumbnail`} />
       <SearchRepositoryCardBodyStyled>
         <SearchRepositoryCardTitleStyled>{full_name}</SearchRepositoryCardTitleStyled>
         <Card.Date type="update" date={updated_at} />

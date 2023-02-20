@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { Button, DetailRepository, Loader } from '../components';
 import { FilterLimitButtons, RoutePathConstants } from '../constants';
 import { useFavoritDetail } from '../hooks';
-import { ContainerStyled, EmptyStyled } from '../styles';
+import { ContainerStyled, EmptyStyled, TitleStyled } from '../styles';
 
 const Detail = () => {
   const {
@@ -13,6 +13,7 @@ const Detail = () => {
     page,
     limit,
     paginationSize,
+    issueSize,
     isEmptyFavorit,
     handleChangePage,
     handleChangeLimit,
@@ -33,6 +34,7 @@ const Detail = () => {
           />
         ))}
       </DetailFilterStyled>
+      <TitleStyled>총 {issueSize}개의 이슈</TitleStyled>
       <Suspense
         fallback={
           <EmptyStyled>

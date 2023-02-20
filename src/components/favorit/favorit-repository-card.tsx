@@ -1,9 +1,9 @@
+import styled from '@emotion/styled';
+
 import { RepositoryType } from '@/types';
 
 import { Card, CardItemStyled } from '../card';
 import { Button, Icons } from '../common';
-
-import { FavoritCardItemBodyStyled } from './favorit-repository-card.style';
 
 interface FavoritRepositoryCardProps {
   item: RepositoryType;
@@ -20,6 +20,7 @@ const FavoritRepositoryCard = ({
     full_name,
     open_issues,
     stargazers_count,
+    forks,
     description,
     updated_at,
     created_at,
@@ -34,6 +35,7 @@ const FavoritRepositoryCard = ({
         <Card.Date type="update" date={updated_at} />
         <Card.Issue count={open_issues} />
         <Card.Star count={stargazers_count} />
+        <Card.Fork count={forks} />
         {language && <Card.Language language={language} />}
         {description && <Card.Description description={description} />}
       </FavoritCardItemBodyStyled>
@@ -47,5 +49,9 @@ const FavoritRepositoryCard = ({
     </CardItemStyled>
   );
 };
+
+export const FavoritCardItemBodyStyled = styled.div`
+  flex: 1;
+`;
 
 export default FavoritRepositoryCard;

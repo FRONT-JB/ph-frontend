@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react';
+import { ImgHTMLAttributes, ReactNode, useMemo } from 'react';
 
 import { DescriptionStyled, TitleStyled } from '@/styles';
 import { LanguageType } from '@/styles/theme';
@@ -6,8 +6,18 @@ import { dateToLocaleString } from '@/utils';
 
 import { Dot, Icons } from '../common';
 
+import { CardItemImageStyled } from './card.style';
+
 const CardTitle = ({ title }: { title: ReactNode }) => {
   return <TitleStyled>{title}</TitleStyled>;
+};
+
+const CardItemImage = ({ src, alt, title, ...rest }: ImgHTMLAttributes<HTMLImageElement>) => {
+  return (
+    <CardItemImageStyled>
+      <img src={src} alt={alt} title={alt || title} {...rest} />
+    </CardItemImageStyled>
+  );
 };
 
 const CardDate = ({ type, date }: { type: 'create' | 'update'; date: Date }) => {
@@ -65,4 +75,22 @@ const CardDescription = ({ description }: { description: ReactNode }) => {
   );
 };
 
-export { CardDate, CardDescription, CardIssue, CardLanguage, CardStar, CardTitle };
+const CardFork = ({ count }: { count: number }) => {
+  return (
+    <DescriptionStyled>
+      <Icons.Fork />
+      {count}
+    </DescriptionStyled>
+  );
+};
+
+export {
+  CardDate,
+  CardDescription,
+  CardFork,
+  CardIssue,
+  CardItemImage,
+  CardLanguage,
+  CardStar,
+  CardTitle,
+};

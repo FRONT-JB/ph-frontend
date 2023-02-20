@@ -12,6 +12,7 @@ interface RepositoryType {
   owner: OwnerType;
   open_issues: number;
   stargazers_count: number;
+  forks: number;
   full_name: string;
   watchers: number;
   description: string;

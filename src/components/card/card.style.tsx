@@ -16,6 +16,7 @@ export const CardItemImageStyled = styled.span`
   display: inline-block;
   width: 50px;
   height: 50px;
+  border: 1px solid ${({ theme }) => theme.colors.zinc_200};
   border-radius: 50%;
   & > img {
     display: inline-block;

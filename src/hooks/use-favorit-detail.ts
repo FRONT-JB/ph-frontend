@@ -43,6 +43,7 @@ const useFavoritDetail = () => {
     page,
     limit,
     paginationSize,
+    issueSize,
     isEmptyFavorit,
     handleChangePage,
     handleChangeLimit,

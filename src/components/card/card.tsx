@@ -3,7 +3,9 @@ import { ReactNode, useMemo } from 'react';
 import {
   CardDate,
   CardDescription,
+  CardFork,
   CardIssue,
+  CardItemImage,
   CardLanguage,
   CardStar,
   CardTitle,
@@ -25,5 +27,7 @@ Card.Issue = CardIssue;
 Card.Language = CardLanguage;
 Card.Star = CardStar;
 Card.Date = CardDate;
+Card.Fork = CardFork;
+Card.Image = CardItemImage;
 
 export default Card;
