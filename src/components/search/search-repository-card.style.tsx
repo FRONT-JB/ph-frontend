@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 
-import { fontEllipsis, TitleStyled } from '@/styles';
+import { DescriptionStyled, fontEllipsis, TitleStyled } from '@/styles';
 
 export const SearchRepositoryCardBodyStyled = styled.div`
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  flex: 1;
 `;
 
 export const SearchRepositoryCardTitleStyled = styled(TitleStyled)`
   ${fontEllipsis(2)}
+  width: 100%;
+`;
+
+export const SearchRepositoryCardDescStyled = styled(DescriptionStyled)`
+  ${fontEllipsis(1)}
   width: 100%;
 `;

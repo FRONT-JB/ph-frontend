@@ -37,15 +37,24 @@ const EmptyStyled = styled.div`
 
 const TitleStyled = styled.strong`
   display: inline-block;
+  margin-bottom: 8px;
   font-size: 16px;
   line-height: 26px;
   color: ${({ theme }) => theme.colors.zinc_800};
+  word-break: break-all;
+  & > .icons {
+    margin-right: 8px;
+  }
 `;
 
 const DescriptionStyled = styled.p`
   font-size: 12px;
   line-height: 19px;
-  color: ${({ theme }) => theme.colors.zinc_800};
+  color: ${({ theme }) => theme.colors.zinc_600};
+  word-break: break-all;
+  & > .icons {
+    margin-right: 4px;
+  }
 `;
 
 export {

@@ -1,9 +1,9 @@
-import { DescriptionStyled, TitleStyled } from '@/styles';
 import { RepositoryType } from '@/types';
 
-import { Button } from '../common';
+import { Card, CardItemStyled } from '../card';
+import { Button, Icons } from '../common';
 
-import { FavoritCardItemBodyStyled, FavoritCardItemStyled } from './favorit-repository-card.style';
+import { FavoritCardItemBodyStyled } from './favorit-repository-card.style';
 
 interface FavoritRepositoryCardProps {
   item: RepositoryType;
@@ -16,22 +16,35 @@ const FavoritRepositoryCard = ({
   onChangeFavoritRepository,
   onRouteDetail,
 }: FavoritRepositoryCardProps) => {
+  const {
+    full_name,
+    open_issues,
+    stargazers_count,
+    description,
+    updated_at,
+    created_at,
+    language,
+  } = item;
+
   return (
-    <FavoritCardItemStyled key={item.full_name} onClick={() => onRouteDetail(item)}>
+    <CardItemStyled key={full_name} onClick={() => onRouteDetail(item)}>
       <FavoritCardItemBodyStyled>
-        <TitleStyled>{item.full_name}</TitleStyled>
-        <DescriptionStyled>Issues : {item.open_issues}</DescriptionStyled>
-        <DescriptionStyled>Star : {item.stargazers_count}</DescriptionStyled>
-        {item.description && <DescriptionStyled>{item.description}</DescriptionStyled>}
+        <Card.Title title={full_name} />
+        <Card.Date type="create" date={created_at} />
+        <Card.Date type="update" date={updated_at} />
+        <Card.Issue count={open_issues} />
+        <Card.Star count={stargazers_count} />
+        {language && <Card.Language language={language} />}
+        {description && <Card.Description description={description} />}
       </FavoritCardItemBodyStyled>
       <Button
-        buttonText="del"
+        buttonText={<Icons.BookmarkActive />}
         onClick={(e) => {
           e.stopPropagation();
           onChangeFavoritRepository(item);
         }}
       />
-    </FavoritCardItemStyled>
+    </CardItemStyled>
   );
 };
 

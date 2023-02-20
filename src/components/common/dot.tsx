@@ -19,4 +19,5 @@ const DotStyled = styled.em<{ language: LanguageType }>`
   height: 5px;
   border-radius: 50%;
   background-color: ${({ theme, language }) => theme.languageColor[language] || '#3572A5'};
+  vertical-align: middle;
 `;

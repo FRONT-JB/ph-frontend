@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const CardItemStyled = styled.li`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   padding: 10px 0;
   cursor: pointer;

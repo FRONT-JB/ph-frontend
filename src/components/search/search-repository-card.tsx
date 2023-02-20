@@ -1,12 +1,13 @@
-import styled from '@emotion/styled';
-
-import { DescriptionStyled } from '@/styles';
 import { RepositoryType } from '@/types';
 
-import { CardItemImageStyled, CardItemStyled } from '../card';
-import { Button, Dot } from '../common';
+import { Card, CardItemImageStyled, CardItemStyled } from '../card';
+import { Button, Icons } from '../common';
 
-import { SearchRepositoryCardTitleStyled } from './search-repository-card.style';
+import {
+  SearchRepositoryCardBodyStyled,
+  SearchRepositoryCardDescStyled,
+  SearchRepositoryCardTitleStyled,
+} from './search-repository-card.style';
 
 interface SearchRepositoryCardProps {
   item: RepositoryType;
@@ -14,7 +15,7 @@ interface SearchRepositoryCardProps {
 }
 
 const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchRepositoryCardProps) => {
-  const { owner, full_name, language } = item;
+  const { owner, full_name, language, updated_at, description, open_issues } = item;
 
   return (
     <CardItemStyled>
@@ -25,22 +26,21 @@ const SearchRepositoryCard = ({ item, onChangeFavoritRepository }: SearchReposit
           title={`${owner.login} Thunbnail`}
         />
       </CardItemImageStyled>
-      <SearchRepositoryCardItemBody>
+      <SearchRepositoryCardBodyStyled>
         <SearchRepositoryCardTitleStyled>{full_name}</SearchRepositoryCardTitleStyled>
-        {language && (
-          <DescriptionStyled>
-            <Dot language={language} />
-            {language}
-          </DescriptionStyled>
+        <Card.Date type="update" date={updated_at} />
+        <Card.Issue count={open_issues} />
+        {language && <Card.Language language={language} />}
+        {description && (
+          <SearchRepositoryCardDescStyled>
+            <Icons.Description />
+            {description}
+          </SearchRepositoryCardDescStyled>
         )}
-      </SearchRepositoryCardItemBody>
-      <Button buttonText="add" onClick={() => onChangeFavoritRepository(item)} />
+      </SearchRepositoryCardBodyStyled>
+      <Button buttonText={<Icons.Bookmark />} onClick={() => onChangeFavoritRepository(item)} />
     </CardItemStyled>
   );
 };
 
 export default SearchRepositoryCard;
-
-const SearchRepositoryCardItemBody = styled.div`
-  flex: 1;
-`;

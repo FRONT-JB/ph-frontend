@@ -11,11 +11,11 @@ import SearchRepositoryCard from './search-repository-card';
 
 const SearchRepository = () => {
   const { debounceSearchValue, handleChangeFavoritRepository } = useRepositoryContext();
-
   const { data: searchResult } = useRepositoryQuery(debounceSearchValue, {
     enabled: Boolean(debounceSearchValue),
     suspense: true,
   });
+
   const isEmpty = useMemo(() => !searchResult?.items.length, [searchResult?.items]);
 
   if (isEmpty && !debounceSearchValue)
@@ -27,13 +27,15 @@ const SearchRepository = () => {
     <SearchRepositoryContent>
       <Card
         list={searchResult?.items}
-        render={(item) => (
-          <SearchRepositoryCard
-            key={item.id}
-            item={item}
-            onChangeFavoritRepository={handleChangeFavoritRepository}
-          />
-        )}
+        render={(item) => {
+          return (
+            <SearchRepositoryCard
+              key={item.id}
+              item={item}
+              onChangeFavoritRepository={handleChangeFavoritRepository}
+            />
+          );
+        }}
       />
     </SearchRepositoryContent>
   );

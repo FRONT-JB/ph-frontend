@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { Button, DetailRepository, Loader } from '../components';
 import { FilterLimitButtons, RoutePathConstants } from '../constants';
 import { useFavoritDetail } from '../hooks';
-import { ContainerStyled } from '../styles';
+import { ContainerStyled, EmptyStyled } from '../styles';
 
 const Detail = () => {
   const {
@@ -33,7 +33,13 @@ const Detail = () => {
           />
         ))}
       </DetailFilterStyled>
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={
+          <EmptyStyled>
+            <Loader />
+          </EmptyStyled>
+        }
+      >
         <DetailRepository repoName={repoName} page={page} limit={limit} />
       </Suspense>
       {paginationSize ? (

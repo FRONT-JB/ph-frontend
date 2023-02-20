@@ -17,6 +17,8 @@ interface RepositoryType {
   description: string;
   language: LanguageType;
   visibility: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 interface RepositoryResponse {

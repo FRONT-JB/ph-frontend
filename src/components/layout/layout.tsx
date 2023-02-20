@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { ContainerStyled } from '@/styles';
 
+import { Loader } from '../common';
 import { FavoritRepository } from '../favorit';
 import { Header } from '../header';
 
@@ -12,7 +13,7 @@ const Layout = () => {
     <LayoutStyled>
       <LayoutContainer>
         <Header />
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </LayoutContainer>

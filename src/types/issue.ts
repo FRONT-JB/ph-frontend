@@ -17,8 +17,8 @@ interface IssueType {
   state: string;
   locked: boolean;
   comments: number;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
   closed_at: null;
   draft: boolean;
   body: string | null;

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { Input, Loader, SearchRepository } from '@/components';
 import { useRepositoryContext } from '@/provider';
-import { ContainerStyled, ContentStyled } from '@/styles';
+import { ContainerStyled, ContentStyled, EmptyStyled } from '@/styles';
 
 const Main = () => {
   const { handleChangeSearchValue } = useRepositoryContext();
@@ -12,7 +12,13 @@ const Main = () => {
     <ContainerStyled>
       <Input onChange={handleChangeSearchValue} placeholder="키워드를 입력해주세요." />
       <MainContent>
-        <Suspense fallback={<Loader />}>
+        <Suspense
+          fallback={
+            <EmptyStyled>
+              <Loader />
+            </EmptyStyled>
+          }
+        >
           <SearchRepository />
         </Suspense>
       </MainContent>
