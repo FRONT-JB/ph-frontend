@@ -32,12 +32,12 @@
       📂 api              :   API ( Axios, React-Query )
       📂 assets           :   Image files
       📂 components       :   React Component
-        📂 common         :   Button, Input           ... .ts, .tsx
-        📂 detail         :   Detail Component        ... .ts, .tsx
-        📂 favort         :   Favorit Component       ... .ts, .tsx
-        📂 header         :   Header, Nav Component   ... .ts, .tsx
-        📂 layout         :   Mixins, Variables       ... .ts, .tsx
-        📂 search         :   Mixins, Variables       ... .ts, .tsx
+        📂 common         :   Button, Input               .tsx
+        📂 detail         :   Detail Component            .tsx
+        📂 favort         :   Favorit Component           .tsx
+        📂 header         :   Header, Nav Component       .tsx
+        📂 layout         :   Layout Component            .tsx
+        📂 search         :   Search Component            .tsx
         📄 index          :   export index                .ts
       📂 constants        :   Global Constants            .ts
         📄 env            :   Env Constants               .ts
