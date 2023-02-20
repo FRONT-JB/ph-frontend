@@ -2,10 +2,10 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { FilterConstants, SearchParamsConstants } from '@/constants';
-import { useRepositoryValueContext } from '@/provider';
+import { useRepositoryContext } from '@/provider';
 
 const useFavoritDetail = () => {
-  const { favorit } = useRepositoryValueContext();
+  const { favorit } = useRepositoryContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const paramsObject = Object.fromEntries(searchParams.entries());
   const repoName = searchParams.get(SearchParamsConstants.RepositoryName) as string;
@@ -20,17 +20,23 @@ const useFavoritDetail = () => {
     return !found || !favorit.length;
   }, [favorit]);
 
-  const handleChangePage = useCallback((pageNumber: number) => {
-    setSearchParams({ ...paramsObject, page: String(pageNumber) });
-  }, []);
+  const handleChangePage = useCallback(
+    (pageNumber: number) => {
+      setSearchParams({ ...paramsObject, page: String(pageNumber) });
+    },
+    [paramsObject]
+  );
 
-  const handleChangeLimit = useCallback((limitNumber: number) => {
-    setSearchParams({
-      ...paramsObject,
-      page: String(FilterConstants.InitialPage),
-      limit: String(limitNumber),
-    });
-  }, []);
+  const handleChangeLimit = useCallback(
+    (limitNumber: number) => {
+      setSearchParams({
+        ...paramsObject,
+        page: String(FilterConstants.InitialPage),
+        limit: String(limitNumber),
+      });
+    },
+    [paramsObject]
+  );
 
   return {
     repoName,

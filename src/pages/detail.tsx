@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Button, DetailRepository } from '../components';
+import { Button, DetailRepository, Loader } from '../components';
 import { FilterLimitButtons, RoutePathConstants } from '../constants';
 import { useFavoritDetail } from '../hooks';
-import { ContainerStyled, EmptyStyled } from '../styles';
+import { ContainerStyled } from '../styles';
 
 const Detail = () => {
   const {
@@ -29,26 +29,29 @@ const Detail = () => {
             buttonText={text}
             isActive={Number(limit) === value}
             onClick={() => handleChangeLimit(value)}
+            disabled={!paginationSize}
           />
         ))}
       </DetailFilterStyled>
-      <Suspense fallback={<EmptyStyled>...loading</EmptyStyled>}>
+      <Suspense fallback={<Loader />}>
         <DetailRepository repoName={repoName} page={page} limit={limit} />
       </Suspense>
-      <DetailPaginationStyled>
-        {Array(paginationSize)
-          .fill(0)
-          .map((_, index) => {
-            return (
-              <DetailPaginationButton
-                key={index}
-                buttonText={index + 1}
-                isActive={index + 1 === page}
-                onClick={() => handleChangePage(index + 1)}
-              />
-            );
-          })}
-      </DetailPaginationStyled>
+      {paginationSize ? (
+        <DetailPaginationStyled>
+          {Array(paginationSize)
+            .fill(0)
+            .map((_, index) => {
+              return (
+                <DetailPaginationButton
+                  key={index}
+                  buttonText={index + 1}
+                  isActive={index + 1 === page}
+                  onClick={() => handleChangePage(index + 1)}
+                />
+              );
+            })}
+        </DetailPaginationStyled>
+      ) : null}
     </ContainerStyled>
   );
 };

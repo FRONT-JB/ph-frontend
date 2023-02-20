@@ -1,10 +1,14 @@
+import { useMemo } from 'react';
 import styled from '@emotion/styled';
 
 import { useIssuesQuery } from '@/api';
-import { ContentStyled } from '@/styles';
+import { ContentStyled, EmptyStyled } from '@/styles';
 import { IssueParamsType } from '@/types';
 
+import { Card } from '../card';
 import { NotFound } from '../common';
+
+import DetailRepositoryCard from './detail-repository-card';
 
 interface DetailRepositoryProps extends IssueParamsType {}
 
@@ -14,23 +18,31 @@ const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
     {
       enabled: Boolean(repoName),
       suspense: true,
-      notifyOnChangeProps: 'tracked',
     }
   );
+  const isNotFound = useMemo(() => !repoName || !page || !limit, [repoName, page, limit]);
+  const isEmpty = useMemo(() => !issues?.length, [issues]);
 
-  if (!repoName) {
+  const statusMessage = useMemo(() => {
+    if (isEmpty) return '이슈가 없어요.';
+    if (error) return '에러가 발생했어요.';
+    return '이슈가 없어요.';
+  }, [isEmpty, error]);
+
+  if (isNotFound) {
     return <NotFound />;
   }
 
-  if (error) {
-    return <p>에러가 발생했어요.</p>;
+  if (isEmpty || error) {
+    return <EmptyStyled>{statusMessage}</EmptyStyled>;
   }
 
   return (
     <DetailRepositoryContent>
-      {issues?.map(({ id }) => (
-        <p key={id}>{id}</p>
-      ))}
+      <Card
+        list={issues}
+        render={(issue) => <DetailRepositoryCard key={issue.id} issue={issue} />}
+      />
     </DetailRepositoryContent>
   );
 };

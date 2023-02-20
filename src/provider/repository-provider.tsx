@@ -13,20 +13,14 @@ import { StorageKeyConstants } from '@/constants';
 import { useDebounce } from '@/hooks';
 import { RepositoryType } from '@/types';
 
-type RepositoryValueContextType = {
+type RepositoryContextType = {
   debounceSearchValue: string;
   favorit: RepositoryType[];
-};
-
-type RepositoryDispatchContextType = {
   handleChangeSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
   handleChangeFavoritRepository: (repository: RepositoryType) => void;
 };
 
-const RepositoryValueContext = createContext<RepositoryValueContextType | undefined>(undefined);
-const RepositoryDispatchContext = createContext<RepositoryDispatchContextType | undefined>(
-  undefined
-);
+const RepositoryContext = createContext<RepositoryContextType | undefined>(undefined);
 
 const RepositoryProvider = ({ children }: { children: ReactNode }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -53,13 +47,13 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const repositoryValues = useMemo(
-    () => ({ debounceSearchValue, favorit }),
+    () => ({
+      debounceSearchValue,
+      favorit,
+      handleChangeSearchValue,
+      handleChangeFavoritRepository,
+    }),
     [debounceSearchValue, favorit]
-  );
-
-  const repositoryDispatch = useMemo(
-    () => ({ handleChangeSearchValue, handleChangeFavoritRepository }),
-    []
   );
 
   useEffect(() => {
@@ -78,28 +72,16 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <RepositoryValueContext.Provider value={repositoryValues}>
-      <RepositoryDispatchContext.Provider value={repositoryDispatch}>
-        {children}
-      </RepositoryDispatchContext.Provider>
-    </RepositoryValueContext.Provider>
+    <RepositoryContext.Provider value={repositoryValues}>{children}</RepositoryContext.Provider>
   );
 };
 
-const useRepositoryValueContext = () => {
-  const context = useContext(RepositoryValueContext);
+const useRepositoryContext = () => {
+  const context = useContext(RepositoryContext);
   if (!context) {
     throw Error('useRespositoryContext Error');
   }
   return context;
 };
 
-const useRepositoryDispatchContext = () => {
-  const context = useContext(RepositoryDispatchContext);
-  if (!context) {
-    throw Error('useRespositoryContext Error');
-  }
-  return context;
-};
-
-export { RepositoryProvider, useRepositoryDispatchContext, useRepositoryValueContext };
+export { RepositoryProvider, useRepositoryContext };

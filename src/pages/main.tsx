@@ -1,18 +1,18 @@
 import { Suspense } from 'react';
 import styled from '@emotion/styled';
 
-import { Input, SearchRepository } from '@/components';
-import { useRepositoryDispatchContext } from '@/provider';
-import { ContainerStyled, ContentStyled, EmptyStyled } from '@/styles';
+import { Input, Loader, SearchRepository } from '@/components';
+import { useRepositoryContext } from '@/provider';
+import { ContainerStyled, ContentStyled } from '@/styles';
 
 const Main = () => {
-  const { handleChangeSearchValue } = useRepositoryDispatchContext();
+  const { handleChangeSearchValue } = useRepositoryContext();
 
   return (
     <ContainerStyled>
       <Input onChange={handleChangeSearchValue} placeholder="키워드를 입력해주세요." />
       <MainContent>
-        <Suspense fallback={<EmptyStyled>...loading</EmptyStyled>}>
+        <Suspense fallback={<Loader />}>
           <SearchRepository />
         </Suspense>
       </MainContent>

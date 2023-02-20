@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import styled from '@emotion/styled';
 
 import { useRepositoryQuery } from '@/api';
-import { useRepositoryDispatchContext, useRepositoryValueContext } from '@/provider';
+import { useRepositoryContext } from '@/provider';
 import { ContentStyled, EmptyStyled } from '@/styles';
 
 import { Card } from '../card';
@@ -10,8 +10,8 @@ import { Card } from '../card';
 import SearchRepositoryCard from './search-repository-card';
 
 const SearchRepository = () => {
-  const { debounceSearchValue } = useRepositoryValueContext();
-  const { handleChangeFavoritRepository } = useRepositoryDispatchContext();
+  const { debounceSearchValue, handleChangeFavoritRepository } = useRepositoryContext();
+
   const { data: searchResult } = useRepositoryQuery(debounceSearchValue, {
     enabled: Boolean(debounceSearchValue),
     suspense: true,

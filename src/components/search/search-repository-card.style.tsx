@@ -1,17 +1,14 @@
 import styled from '@emotion/styled';
 
-import { Button } from '../common';
+import { fontEllipsis, TitleStyled } from '@/styles';
 
-export const SearchRepositoryCardItemDesc = styled.div`
-  flex: 1;
+export const SearchRepositoryCardBodyStyled = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
-export const SearchRepositoryCardItemName = styled.p`
-  user-select: none;
+export const SearchRepositoryCardTitleStyled = styled(TitleStyled)`
+  ${fontEllipsis(2)}
+  width: 100%;
 `;
-
-export const SearchRepositoryCardItemOwner = styled.p`
-  user-select: none;
-`;
-
-export const SearchRepositoryCardItemButton = styled(Button)``;
