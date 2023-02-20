@@ -27,7 +27,7 @@ const ButtonStyled = styled.button<{ isActive: boolean }>`
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.shadow};
   color: ${({ theme }) => theme.colors.zinc_900};
-  font-size: 14px;
+  font-size: 12px;
   outline: 4px solid transparent;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -48,6 +48,7 @@ const ButtonStyled = styled.button<{ isActive: boolean }>`
           background-color: ${theme.colors.zinc_800};
           border-color: ${theme.colors.zinc_800};
           color: ${theme.colors.white};
+          font-weight: 700;
         `
       : ''}
 `;
