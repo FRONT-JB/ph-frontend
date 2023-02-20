@@ -27,15 +27,13 @@ const SearchRepository = () => {
     <SearchRepositoryContent>
       <Card
         list={searchResult?.items}
-        render={(item) => {
-          return (
-            <SearchRepositoryCard
-              key={item.id}
-              item={item}
-              onChangeFavoritRepository={handleChangeFavoritRepository}
-            />
-          );
-        }}
+        render={(item) => (
+          <SearchRepositoryCard
+            key={item.id}
+            item={item}
+            onChangeFavoritRepository={handleChangeFavoritRepository}
+          />
+        )}
       />
     </SearchRepositoryContent>
   );

@@ -95,6 +95,7 @@ const reset = css`
     padding: 0;
     border: 0;
     font-style: normal;
+    text-decoration: none;
   }
   article,
   aside,

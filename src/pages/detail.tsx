@@ -23,6 +23,9 @@ const Detail = () => {
 
   return (
     <ContainerStyled>
+      <TitleStyled>
+        {repoName} - 총 {issueSize}개의 이슈
+      </TitleStyled>
       <DetailFilterStyled>
         {FilterLimitButtons.map(({ id, text, value }) => (
           <Button
@@ -34,7 +37,6 @@ const Detail = () => {
           />
         ))}
       </DetailFilterStyled>
-      <TitleStyled>총 {issueSize}개의 이슈</TitleStyled>
       <Suspense
         fallback={
           <EmptyStyled>

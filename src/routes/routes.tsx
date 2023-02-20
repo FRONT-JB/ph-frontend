@@ -4,6 +4,7 @@ import { Layout, NotFound } from '@/components';
 
 const DynamicMain = React.lazy(() => import('../pages/main'));
 const DynamicDetail = React.lazy(() => import('../pages/detail'));
+const DynamicFavorit = React.lazy(() => import('../pages/favorit'));
 
 export const routes = [
   {
@@ -16,6 +17,7 @@ export const routes = [
         index: true,
       },
       { path: 'detail', element: <DynamicDetail />, index: true },
+      { path: 'favorit', element: <DynamicFavorit />, index: true },
       {
         path: '*',
         element: <NotFound />,

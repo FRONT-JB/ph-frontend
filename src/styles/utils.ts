@@ -13,7 +13,7 @@ const ContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: calc(100% - 129px);
+  max-height: calc(100% - 117px);
   width: 100%;
   height: 100%;
 `;
@@ -42,6 +42,7 @@ const TitleStyled = styled.strong`
   line-height: 26px;
   color: ${({ theme }) => theme.colors.zinc_800};
   word-break: break-all;
+  user-select: none;
   & > .icons {
     margin-right: 4px;
   }
@@ -52,6 +53,7 @@ const DescriptionStyled = styled.p`
   line-height: 19px;
   color: ${({ theme }) => theme.colors.zinc_600};
   word-break: break-all;
+  user-select: none;
   & > .icons {
     margin-right: 4px;
   }

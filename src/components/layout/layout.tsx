@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import { ContainerStyled } from '@/styles';
 
 import { Loader } from '../common';
-import { FavoritRepository } from '../favorit';
 import { Header } from '../header';
 
 const Layout = () => {
@@ -17,7 +16,6 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </LayoutContainer>
-      <FavoritRepository />
     </LayoutStyled>
   );
 };
@@ -35,7 +33,7 @@ const LayoutStyled = styled.div`
   gap: 8px;
   padding: 10px;
   margin: 0 auto;
-  max-width: ${({ theme }) => theme.fieldSize.lg};
+  max-width: ${({ theme }) => theme.fieldSize.sm};
   height: 100%;
   background: ${({ theme }) => theme.colors.white};
 `;
