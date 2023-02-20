@@ -1,33 +1,41 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 
-import { useIssuesQuery } from '@/api';
+import { useIssuesInfinityQuery } from '@/api';
 import { ContentStyled, EmptyStyled } from '@/styles';
 import { IssueParamsType } from '@/types';
 
 import { Card } from '../card';
-import { NotFound } from '../common';
+import { Loader, LoadMore, NotFound } from '../common';
 
 import DetailRepositoryCard from './detail-repository-card';
 
-interface DetailRepositoryProps extends IssueParamsType {}
+interface DetailRepositoryProps extends Pick<IssueParamsType, 'repoName'> {}
 
-const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
-  const { data: issues, error } = useIssuesQuery(
-    { repoName, page, limit },
-    {
-      enabled: Boolean(repoName),
-      suspense: true,
-    }
-  );
-  const isNotFound = useMemo(() => !repoName || !page || !limit, [repoName, page, limit]);
-  const isEmpty = useMemo(() => !issues?.length, [issues]);
+const DetailRepository = ({ repoName }: DetailRepositoryProps) => {
+  const {
+    data: issues,
+    isFetching,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  } = useIssuesInfinityQuery({ repoName });
+  const isNotFound = useMemo(() => !repoName, [repoName]);
+  const isEmpty = useMemo(() => !issues?.pages[0].length, [issues]);
 
   const statusMessage = useMemo(() => {
     if (isEmpty) return '이슈가 없어요.';
     if (error) return '에러가 발생했어요.';
     return '이슈가 없어요.';
   }, [isEmpty, error]);
+
+  if (isLoading)
+    return (
+      <EmptyStyled>
+        <Loader />
+      </EmptyStyled>
+    );
 
   if (isNotFound) {
     return <NotFound />;
@@ -40,9 +48,12 @@ const DetailRepository = ({ repoName, page, limit }: DetailRepositoryProps) => {
   return (
     <DetailRepositoryContent>
       <Card
-        list={issues}
-        render={(issue) => <DetailRepositoryCard key={issue.id} issue={issue} />}
+        list={issues?.pages}
+        render={(issueList) =>
+          issueList.map((issue) => <DetailRepositoryCard key={issue.id} issue={issue} />)
+        }
       />
+      <LoadMore isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />
     </DetailRepositoryContent>
   );
 };

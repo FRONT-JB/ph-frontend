@@ -1,5 +1,9 @@
 import { LanguageType } from '@/styles/theme';
 
+interface RepositoryParamsType {
+  searchValue: string;
+  page: number;
+}
 interface OwnerType {
   login: string;
   id: number;
@@ -28,4 +32,4 @@ interface RepositoryResponse {
   total_count: number;
 }
 
-export type { OwnerType, RepositoryResponse, RepositoryType };
+export type { OwnerType, RepositoryParamsType, RepositoryResponse, RepositoryType };

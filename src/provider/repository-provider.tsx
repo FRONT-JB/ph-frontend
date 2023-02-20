@@ -14,6 +14,7 @@ import { useDebounce } from '@/hooks';
 import { RepositoryType } from '@/types';
 
 type RepositoryContextType = {
+  searchValue: string;
   debounceSearchValue: string;
   favorit: RepositoryType[];
   handleChangeSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -65,12 +66,13 @@ const RepositoryProvider = ({ children }: { children: ReactNode }) => {
 
   const repositoryValues = useMemo(
     () => ({
+      searchValue,
       debounceSearchValue,
       favorit,
       handleChangeSearchValue,
       handleChangeFavoritRepository,
     }),
-    [debounceSearchValue, favorit]
+    [debounceSearchValue, favorit, searchValue]
   );
 
   useEffect(() => {

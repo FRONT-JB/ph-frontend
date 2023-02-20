@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_BASE_URL, GITHUB_AUTH_TOKEN } from '@/constants';
-import { IssueParamsType, IssueType, RepositoryResponse } from '@/types';
+import { IssueParamsType, IssueType, RepositoryParamsType, RepositoryResponse } from '@/types';
 
 const baseApi = axios.create({
   baseURL: API_BASE_URL,
@@ -12,14 +12,15 @@ const baseApi = axios.create({
 });
 
 const HTTP = {
-  getRepository: async (searchTerm: string) => {
-    const url = `/search/repositories?q=${searchTerm}`;
+  getRepository: async (params: RepositoryParamsType) => {
+    const { searchValue, page } = params;
+    const url = `/search/repositories?q=${searchValue}&page=${page}`;
     const { data } = await baseApi.get<RepositoryResponse>(url);
     return data;
   },
   getIssues: async (params: IssueParamsType) => {
-    const { repoName, page, limit } = params;
-    const url = `/repos/${repoName}/issues?page=${page}&per_page=${limit}`;
+    const { repoName, page } = params;
+    const url = `/repos/${repoName}/issues?page=${page}`;
     const { data } = await baseApi.get<IssueType[]>(url);
     return data;
   },

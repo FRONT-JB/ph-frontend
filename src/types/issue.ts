@@ -4,7 +4,6 @@ import { UserType } from './user';
 interface IssueParamsType {
   repoName: RepositoryType['full_name'];
   page: number;
-  limit: number;
 }
 
 interface IssueType {

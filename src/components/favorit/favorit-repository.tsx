@@ -1,4 +1,9 @@
-import useFavoritRepository from '@/hooks/use-favorit-repository';
+import { useCallback, useMemo } from 'react';
+import { createSearchParams, useNavigate } from 'react-router-dom';
+
+import { RoutePathConstants } from '@/constants';
+import { useRepositoryContext } from '@/provider';
+import { RepositoryType } from '@/types';
 
 import { Card } from '../card';
 
@@ -6,8 +11,21 @@ import { FavoritContainerStyled, FavoritEmptyStyled } from './favorit-repository
 import FavoritRepositoryCard from './favorit-repository-card';
 
 const FavoritRepository = () => {
-  const { favorit, isEmpty, handleRouteDetail, handleChangeFavoritRepository } =
-    useFavoritRepository();
+  const navigate = useNavigate();
+  const { favorit, handleChangeFavoritRepository } = useRepositoryContext();
+
+  const isEmpty = useMemo(() => !favorit.length, [favorit]);
+
+  const handleRouteDetail = useCallback((repository: RepositoryType) => {
+    const { full_name: repoName, open_issues } = repository;
+    navigate({
+      pathname: RoutePathConstants.Detail,
+      search: `?${createSearchParams({
+        repoName,
+        issueSize: String(open_issues),
+      })}`,
+    });
+  }, []);
 
   if (isEmpty) return <FavoritEmptyStyled>저장된 데이터가 없습니다.</FavoritEmptyStyled>;
 
